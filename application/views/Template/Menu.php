@@ -3,9 +3,9 @@
     <!-- Logo -->
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>One</b></span>
+      <span class="logo-mini"><b>ARS</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>PrintOne</b></span>
+      <span class="logo-lg"><b>Absensi & Report Stock</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -64,16 +64,7 @@
           </span>
         </div>
       </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
@@ -85,17 +76,31 @@
             </a>
           </li>
         <?php endif ?>
-        <?php if (getAccess('MENU_KATEGORI')): ?>
+        <?php if (getAccess('MENU_BARANG')): ?>
           <li class="">
-            <a href="<?= base_url();?>Master/Kategori">
-              <i class="fa fa-chain text-aqua"></i> <span>Kategori Produk</span>
+            <a href="<?= base_url();?>Master/Produk">
+              <i class="fa fa-chain text-aqua"></i> <span>Barang</span>
             </a>
           </li>
         <?php endif ?>
-        <?php if (getAccess('MENU_PRODUK')): ?>
+        <?php if(getAccess('MENU_BARANG_TOKO')): ?>
           <li class="">
-            <a href="<?= base_url();?>Master/Produk">
-              <i class="fa fa-chain text-aqua"></i> <span>Produk</span>
+            <a href="<?= base_url();?>Master/Produk_toko">
+              <i class="fa fa-chain text-aqua"></i> <span>Barang Toko</span>
+            </a>
+          </li>
+        <?php endif ?>
+        <?php if (getAccess('MENU_TOKO')): ?>
+          <li class="">
+            <a href="<?= base_url();?>Master/Toko">
+              <i class="fa fa-chain text-aqua"></i> <span>Toko</span>
+            </a>
+          </li>
+        <?php endif ?>
+        <?php if(getAccess("MENU_KUNJUNGAN")):?>
+          <li class="">
+            <a href="<?= base_url();?>Master/Kunjungan">
+              <i class="fa fa-chain text-aqua"></i> <span>Kunjungan Toko</span>
             </a>
           </li>
         <?php endif ?>
@@ -110,34 +115,6 @@
           <li class="">
             <a href="<?= base_url();?>User">
               <i class="fa fa-chain text-aqua"></i> <span>Pegawai</span>
-            </a>
-          </li>
-        <?php endif ?>
-        <?php if (getAccess('MENU_ORDER')): ?>
-          <li class="">
-            <a href="<?= base_url();?>Order">
-              <i class="fa fa-chain text-aqua"></i> <span>Order</span>
-            </a>
-          </li>
-        <?php endif ?>
-        <?php if (getAccess('MENU_PELANGGAN')): ?>
-          <li class="">
-            <a href="<?= base_url();?>Pelanggan">
-              <i class="fa fa-chain text-aqua"></i> <span>Pelanggan</span>
-            </a>
-          </li>
-        <?php endif ?>
-        <?php if (getAccess('MENU_LAPORAN_PENJUALAN')): ?>
-          <li class="">
-            <a href="<?= base_url();?>Laporan/Penjualan">
-              <i class="fa fa-chain text-aqua"></i> <span>Laporan Penjualan</span>
-            </a>
-          </li>
-        <?php endif ?>
-        <?php if (getAccess('MENU_LAPORAN_PENGIRIMAN')): ?>
-          <li class="">
-            <a href="<?= base_url();?>Laporan/Pengiriman">
-              <i class="fa fa-chain text-aqua"></i> <span>Laporan Pengiriman</span>
             </a>
           </li>
         <?php endif ?>

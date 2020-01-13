@@ -3,11 +3,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-database"></i> Data Barang
+        <i class="fa fa-database"></i> Data Kunjungan Toko
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Data Barang</li>
+        <li class="active">Data Kunjungan Toko</li>
       </ol>
     </section>
 
@@ -16,8 +16,8 @@
       <?php echo $this->session->flashdata('pesan_eror'); ?>
       <div class="box">
         <div class="box-header">
-          <?php if (getAccess('CREATE_PRODUK')): ?>
-            <a href="<?= base_url();?>Master/Produk/Create" class="btn btn-success btn-flat"><i class="fa fa-plus"></i> Tambah Barang</a>
+          <?php if (getAccess('CREATE_KUNJUNGAN_TOKO')): ?>
+            <a href="<?= base_url();?>Master/Kunjungan/Create" class="btn btn-success btn-flat"><i class="fa fa-plus"></i> Tambah Kunjungan Toko</a>
           <?php endif ?>
         </div>
         <div class="box-body">
@@ -25,8 +25,10 @@
             <thead>
               <tr>
                 <td>No</td>
-                <td>Nama Barang</td>
-                <td>Satuan</td>
+                <td>Nama Toko</td>
+                <td>Nama Pegawai</td>
+                <td>Tanggal</td>
+                <td>Foto</td>
                 <td>Action</td>
               </tr>
             </thead>
@@ -34,14 +36,16 @@
               <?php foreach ($items as $key => $value): ?>
                 <tr>
                   <td><?= $key + 1;?></td>
-                  <td><?= $value->nama_barang;?></td>
-                  <td><?= $value->satuan;?></td>
+                  <td><?= $value->nama_toko;?></td>
+                  <td><?= $value->nama_pegawai;?></td>
+                  <td><?= $value->tanggal;?></td>
+                  <td><img style="width: 50px;height: 50px;" src="../assets/img/<?=$value->foto?>"></td>
                   <td>
-                    <?php if (getAccess('EDIT_PRODUK')): ?>
-                      <a href="<?= base_url();?>Master/Produk/Edit/<?= $value->id_barang;?>" class="btn btn-sm btn-warning btn-flat"><i class="fa fa-edit"></i> Edit</a>
+                    <?php if (getAccess('UPDATE_KUNJUNGAN_TOKO')): ?>
+                      <a href="<?= base_url();?>Master/Kunjungan/Edit/<?= $value->id_report_kunjungan;?>" class="btn btn-sm btn-warning btn-flat"><i class="fa fa-edit"></i> Edit</a>
                     <?php endif ?>
-                    <?php if (getAccess('HAPUS_PRODUK')): ?>
-                    <?= BtnDelete("Master/Produk/Delete/".$value->id_barang,$value->nama_barang);?>
+                    <?php if (getAccess('DELETE_KUNJUNGAN_TOKO')): ?>
+                    <?= BtnDelete("Master/Kunjungan/Delete/".$value->id_report_kunjungan,$value->nama_toko);?>
                     <?php endif ?>
                   </td>
                 </tr>

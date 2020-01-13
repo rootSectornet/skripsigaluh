@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class produk extends CI_Controller {
+class produk_toko extends CI_Controller {
 
 
     public function __construct() {
@@ -11,59 +11,63 @@ class produk extends CI_Controller {
         }
         $this->load->library('Template','template');
         $this->load->helper('date');
-        $this->load->model('Kategori_model','MKategori');
+        $this->load->model('Toko_model','MToko');
         $this->load->model('Produk_model','MProduk');
+        $this->load->model('Produk_toko_model','MProduk_toko');
         date_default_timezone_set("Asia/Jakarta");
 
     }
     public function index(){
-        $data['items'] = $this->MProduk->read();
-        $this->template->layout('Produk/table',$data);
+        $data['items'] = $this->MProduk_toko->read();
+        $this->template->layout('Produk_toko/table',$data);
     }
 
     public function Create(){
         if ($_POST) {
             $this->db->trans_start();
                 $data = array(
-                    "nama_barang"   =>  $this->input->post('nama_barang'),
-                    "satuan"   =>  $this->input->post('satuan'),
+                    "id_barang"   =>  $this->input->post('id_barang'),
+                    "id_toko"   =>  $this->input->post('id_toko'),
                 );
-                $this->MProduk->create($data);
+                $this->MProduk_toko->create($data);
             $this->db->trans_complete();
             if ($this->db->trans_status() === false) {
                 $this->session->set_flashdata("pesan_eror",AlertFailed("Gagal Menambah Data Barang"));
-                redirect('Master/Produk','refresh');
+                redirect('Master/Produk_toko','refresh');
             }else{
                 $this->session->set_flashdata("pesan_eror",AlertSuccess("Berhasil Menambah Data Barang"));
-                redirect('Master/Produk','refresh');
+                redirect('Master/Produk_toko','refresh');
             }
         }
-        $this->template->layout('Produk/create');
+        $data['produk'] = $this->MProduk->read();
+        $data['toko'] = $this->MToko->read();
+        $this->template->layout('Produk_toko/create',$data);
     }
 
 
     public function Edit($id = null){
         if ($_POST) {
             $data = array(
-                "nama_barang"   =>  $this->input->post('nama_barang'),
-                "satuan"   =>  $this->input->post('satuan'),
+                "id_barang"   =>  $this->input->post('id_barang'),
+                "id_toko"   =>  $this->input->post('id_toko'),
             );
             $this->db->trans_start();
-                $this->MProduk->update($data,$id);
+                $this->MProduk_toko->update($data,$id);
             $this->db->trans_complete();
             if ($this->db->trans_status() === false) {
                 $this->session->set_flashdata("pesan_eror",AlertFailed("Gagal Update Data Barang"));
-                redirect('Master/Produk','refresh');
+                redirect('Master/Produk_toko','refresh');
             }else{
                 $this->session->set_flashdata("pesan_eror",AlertSuccess("Berhasil Update Data Barang"));
-                redirect('Master/Produk','refresh');
+                redirect('Master/Produk_toko','refresh');
             }
 
         }
 
-
-        $data['produk'] = $this->MProduk->getById($id);
-        $this->template->layout('Produk/edit',$data);
+        $data['produk'] = $this->MProduk->read();
+        $data['toko'] = $this->MToko->read();
+        $data['produk_toko'] = $this->MProduk_toko->getById($id);
+        $this->template->layout('Produk_toko/edit',$data);
 
     }
 
@@ -71,14 +75,14 @@ class produk extends CI_Controller {
 
     public function Delete($id){
         $this->db->trans_start();
-            $this->MProduk->delete($id);
+            $this->MProduk_toko->delete($id);
         $this->db->trans_complete();
         if ($this->db->trans_status() === false) {
             $this->session->set_flashdata("pesan_eror",AlertFailed("Gagal Hapus  Barang"));
-            redirect('Master/Produk','refresh');
+            redirect('Master/Produk_toko','refresh');
         }else{
             $this->session->set_flashdata("pesan_eror",AlertSuccess("Berhasil Hapus  Barang"));
-            redirect('Master/Produk','refresh');
+            redirect('Master/Produk_toko','refresh');
         }
     }
 

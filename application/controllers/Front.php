@@ -13,7 +13,6 @@ class Front extends CI_Controller {
         $this->load->model('Pelanggan_model','MPelanggan');
         $this->load->model('Pesanan_model','MPesanan');
         $this->load->model('Pembayaran_model','MPembayaran');
-        
     }
     public function index(){
         $data['produks'] = $this->MProduk->read();

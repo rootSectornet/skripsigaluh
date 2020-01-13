@@ -16,6 +16,16 @@
     <!-- Main content -->
     <section class="content">
       <h1>Welcome Bagian <?= @$this->session->userdata('data')->Jabatan;?></h1>
+      <?php if (@$absen){ ?>
+        <a class="btn btn-md btn-info btn-flat" disabled href="#">Anda Sudah Absen</a>
+        <?php if(@$absen->jam_keluar){?>
+          <a class="btn btn-md btn-warning btn-flat" disabled href="<?= base_url();?>Home/Absen_pulang">Anda Sudah Absen Pulang</a>
+        <?php }else{ ?>
+          <a class="btn btn-md btn-warning btn-flat" href="<?= base_url();?>Home/Absen_pulang">Absen Pulang</a>
+        <?php }?>
+      <?php }else{ ?>
+        <a class="btn btn-md btn-info btn-flat" href="<?= base_url();?>Home/Absen">Anda Belum Absen</a>
+      <?php }?>
       <?php if (getAccess("ISDRIVER")): ?>
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">

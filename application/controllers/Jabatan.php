@@ -10,7 +10,7 @@ class Jabatan extends CI_Controller {
             redirect('Auth');
         }
         $this->load->library('Template','template');
-        $this->load->model('jabatan_model','jabatan');
+        $this->load->model('Jabatan_model','jabatan');
         $this->load->helper('date');
         date_default_timezone_set("Asia/Jakarta");
 

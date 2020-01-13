@@ -2,13 +2,15 @@
 /**
 *
 */
-class Produk_model extends CI_Model
+class Produk_toko_model extends CI_Model
 {
 
-	private $table = "barang";
-	private $primary = "id_barang";
+	private $table = "barang_toko";
+	private $primary = "id_barang_toko";
 
 	public function read($cari = null){
+		$this->db->join('barang','barang.id_barang = barang_toko.id_barang','inner');
+		$this->db->join('Toko','Toko.id_toko = barang_toko.id_toko','inner');
 		return $this->db->get($this->table)->result();
 	}
 

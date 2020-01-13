@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class jabatan_model extends CI_Model{
+class Jabatan_model extends CI_Model{
 
 	private $table = "Jabatan";
 	private $primary = "Id_jabatan";

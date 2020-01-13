@@ -3,11 +3,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-database"></i> Data  Barang
+        <i class="fa fa-database"></i> Data Barang Toko
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Data  Barang</li>
+        <li class="active">Data Barang Toko</li>
       </ol>
     </section>
 
@@ -16,22 +16,32 @@
       <?php echo $this->session->flashdata('pesan_eror'); ?>
       <div class="box">
         <div class="box-header">
-          <h4><b>Edit Data  Barang</b></h4>
+          <h4><b>Input Data  Barang</b></h4>
         </div>
         <div class="box-body">
           <div class="col-md-6 col-md-offset-3">
             <form method="post"   enctype="multipart/form-data" >
               <div class="form-group">
                 <label class="control-label">Nama Barang : </label>
-                <input type="text" name="nama_barang" class="form-control" value="<?= @$produk->nama_barang;?>" required placeholder="Nama Barang">
+                <select class="form-control" name="id_barang" required>
+                  <option disabled="true">Pilih Barang</option>
+                  <?php foreach ($produk as $key => $value): ?>
+                    <option value="<?= $value->id_barang; ?>"><?= $value->nama_barang;?></option>
+                  <?php endforeach ?>
+                </select>
               </div>
               <div class="form-group">
-                <label class="control-label">Satuan : </label>
-                <input type="text" name="satuan" class="form-control" required  value="<?= @$produk->satuan;?>" >
+                <label class="control-label">Nama Toko : </label>
+                <select class="form-control" name="id_toko">
+                  <option disabled="true">Pilih Toko</option>
+                  <?php foreach ($toko as $key => $value): ?>
+                    <option value="<?= $value->id_toko;?>"><?= $value->nama_toko;?></option>
+                  <?php endforeach ?>
+                </select>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-check"></i> Simpan</button>
-                <a href="<?= base_url();?>Master/Produk" class="btn btn-danger btn-flat"><i class="fa fa-arrow-left"></i> Kembali</a>
+                <a href="<?= base_url();?>Master/Produk_toko" class="btn btn-danger btn-flat"><i class="fa fa-arrow-left"></i> Kembali</a>
               </div>
             </form>
           </div>
@@ -42,3 +52,4 @@
 
 
   </div>
+

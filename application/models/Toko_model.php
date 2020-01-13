@@ -2,11 +2,11 @@
 /**
 *
 */
-class Produk_model extends CI_Model
+class Toko_model extends CI_Model
 {
 
-	private $table = "barang";
-	private $primary = "id_barang";
+	private $table = "Toko";
+	private $primary = "id_toko";
 
 	public function read($cari = null){
 		return $this->db->get($this->table)->result();

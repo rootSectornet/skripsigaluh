@@ -41,4 +41,16 @@ class User_model extends CI_Model
 		$this->db->where('Pegawai.id_jabatan',$id_jabatan);
 		return $this->db->get($this->table)->result();
 	}
+
+	function absen($data){
+		$this->db->insert('Absen',$data);
+	}
+	function absen_pulang($id,$data){
+		$this->db->where('id_pegawai',$id);
+		$this->db->update('Absen',$data);
+	}
+	function getAbsen($id){
+		$this->db->where('id_pegawai',$id);
+		return $this->db->get('Absen')->row();
+	}
 }
